@@ -145,11 +145,9 @@ for j, f in enumerate(data):
 
         samples = np.genfromtxt("../DIST/summary_"+name+".txt")
 
-        std = []
-        for i in range(5):
-            std.extend([np.std(samples[:,i])])
+        CI = np.percentile(samples,84,axis=0)-np.percentile(samples,16,axis=0)
 
-        if 0.0 not in std:
+        if 0.0 not in CI:
 
             if len(OBS) < 1:
                 OBS = [lam, eps, die, div]
